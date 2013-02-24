@@ -12,13 +12,8 @@ max([]) ->
     0.
 
 solve(N1, N2, Best) ->
-    M = max([N1 * X || X <- lists:seq(1,N2), isPalindrom(N1*X) == true]),    
-    if
-        M > Best ->
-            NewBest = M;
-        true ->
-            NewBest = Best
-    end,
+    M = max([N1 * X || X <- lists:seq(1,N2), isPalindrom(N1*X) == true]),
+    NewBest = lists:max([Best, M]),
     if
         N1 == 1 ->
             Best;
