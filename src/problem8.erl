@@ -13,7 +13,7 @@ solve([N1,N2,N3,N4,N5|T], SoFar) ->
         true ->
             NewSoFar = SoFar
     end,
-    solve([N2|[N3|[N4|[N5|T]]]], NewSoFar);
+    solve([N2,N3,N4,N5|T], NewSoFar);
 solve([_N1,_N2,_N3,_N4], SoFar) ->
     SoFar.
 
