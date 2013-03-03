@@ -11,25 +11,29 @@
 %% There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 %% Find the product abc.
 
-solve(N, [H|T], L, MaxN) ->
+%%
+%% a<b<c is guaranteed, so no check on it.
+%%
+
+solve(N, [H|T], MaxN) ->
     Npow = math:pow(N,2) + math:pow(H,2),
     Nsqr = math:sqrt(Npow),
     case N+H+Nsqr == MaxN of
         true ->
             [N,H,trunc(Nsqr)];
         false ->
-            solve(N, T, L, MaxN)
+            solve(N, T, MaxN)
     end;
-solve(N, [], L, MaxN) when N < 1000 ->
-    solve(N+1, L, L, MaxN);
-solve(_N, [], _L, _MaxN) ->
+solve(N, [], MaxN) when N < MaxN ->
+    solve(N+1, lists:seq(N+2, MaxN), MaxN);
+solve(_N, [], _MaxN) ->
     0.
     
 
 
 solve(N, MaxN) ->
-    L = lists:seq(1,MaxN),
-    solve(N, L, L, MaxN).
+    L = lists:seq(2,MaxN),
+    solve(N, L, MaxN).
 
 solve() ->
     [A,B,C] = solve(1,1000),
