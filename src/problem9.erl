@@ -29,8 +29,6 @@ solve(N, [], MaxN) when N < MaxN ->
 solve(_N, [], _MaxN) ->
     0.
     
-
-
 solve(N, MaxN) ->
     L = lists:seq(2,MaxN),
     solve(N, L, MaxN).
